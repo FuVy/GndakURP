@@ -19,7 +19,7 @@ public class Bullet : MonoBehaviour //LAM
     void Start()
     {
         //RotateObject(); //LAM
-        objectTransform.rotation = direction.rotation;
+        //objectTransform.rotation = direction.rotation;
         objectTransform.parent = null;
         objectTransform.position = new Vector3(objectTransform.position.x, 1f, objectTransform.position.z);
 
