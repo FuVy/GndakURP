@@ -32,18 +32,16 @@ public class Weapon : MonoBehaviour
     [SerializeField]
     protected Player player; //Временно, заменить в конце
     
-
     bool ableToShoot;
     int currentMagazineSize;
     string team;
 
     private void Awake()
     {
-        objectTransform = GetComponent<Transform>(); //Find("Body");
-        playerTransform = player.GetComponent<Transform>();
+        
+        objectTransform = GetComponent<Transform>();
         mainCamera = Camera.main;
         animator = GetComponent<Animator>();
-        //weaponBody = objectTransform.Find("AnimatedBody").Find("Body");
         weaponBody = objectTransform.Find("Body");
         looker = GetComponent<LookAtMouse>();
     }
@@ -53,7 +51,6 @@ public class Weapon : MonoBehaviour
         ableToShoot = true;
         team = player.GetTeam();
         //gameObject.layer = LayerMask.NameToLayer(team);
-
         SetWeaponOffset();
     }
 
@@ -64,13 +61,14 @@ public class Weapon : MonoBehaviour
     protected virtual void Update()
     {
         looker.RotateObject(weaponBody.transform, desiredZRotation);
+        
         //looker.RotateObject();
 
         HandleShooting();
     }
-    private void SetWeaponOffset()
+    public void SetWeaponOffset()
     {
-        weaponBody.position = weaponOffset;
+        weaponBody.localPosition = weaponOffset;
     }
 
     #region Shooting
@@ -126,6 +124,16 @@ public class Weapon : MonoBehaviour
     #endregion
 
     #region GetSet
-    
+    public void SetPlayer(Player player)
+    {
+        this.player = player;
+        playerTransform = player.GetComponent<Transform>();
+
+    }
+    public void Destroy()
+    {
+        Destroy(gameObject);
+    }
+
     #endregion
 }
