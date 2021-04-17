@@ -254,8 +254,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5411598441108543525}
-  - component: {fileID: 7862426845974740696}
   - component: {fileID: 1202656414923337549}
+  - component: {fileID: 7862426845974740696}
   - component: {fileID: 845668381}
   m_Layer: 0
   m_Name: Shotgun
@@ -279,6 +279,30 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1202656414923337549
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4634780919388258975}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 123353c43b73f9b428367dfd7ab0f851, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  reloadTime: 1.6
+  damage: 12
+  maximumMagazineCapacity: 5
+  firerate: 0.6
+  bulletSpeed: 17
+  weaponOffset: {x: 1.35, y: 1, z: 1}
+  desiredZRotation: -45
+  shootingPositions:
+  - {fileID: 529358334}
+  - {fileID: 2120169292}
+  - {fileID: 655874175}
+  player: {fileID: 0}
 --- !u!114 &7862426845974740696
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -294,30 +318,6 @@ MonoBehaviour:
   layerMask:
     serializedVersion: 2
     m_Bits: 0
---- !u!114 &1202656414923337549
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4634780919388258975}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 123353c43b73f9b428367dfd7ab0f851, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  reloadTime: 0.7
-  damage: 30
-  maximumMagazineCapacity: 20
-  firerate: 0.1
-  bulletSpeed: 4
-  weaponOffset: {x: 1.35, y: 1, z: 1}
-  desiredZRotation: -45
-  shootingPositions:
-  - {fileID: 529358334}
-  - {fileID: 2120169292}
-  - {fileID: 655874175}
-  player: {fileID: 0}
 --- !u!95 &845668381
 Animator:
   serializedVersion: 3
@@ -328,7 +328,7 @@ Animator:
   m_GameObject: {fileID: 4634780919388258975}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 0a2095c69f77e4e4ba49e042a00f6280, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

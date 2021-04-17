@@ -18,18 +18,16 @@ public class Player : MonoBehaviour
 
     void Awake()
     {
-        //SetWeapon(playerWeapon);
+        
         playerRigidbody = GetComponent<Rigidbody>();
         //radius = GetComponent<SphereCollider>().radius;
         playerTransform = GetComponent<Transform>();
     }
     private void Start()
     {
-        SetDefaultWeapon();
+        SetWeapon(playerWeapon);
         Debug.Log(GetTeam());
-
     }
-    // Update is called once per frame
     void Update()
     {
         UpdateMovementAxis();
@@ -37,11 +35,6 @@ public class Player : MonoBehaviour
     private void FixedUpdate()
     {
         Move();
-
-        if (Input.GetKeyDown(KeyCode.F)) //Убрать
-        {
-            SetWeapon(FindObjectOfType<Shotgun>());
-        }
     }
 
     #region Movement
@@ -63,38 +56,17 @@ public class Player : MonoBehaviour
     {
         return LayerMask.LayerToName(this.gameObject.layer);//gameObject.layer.ToString();
     }
-
-    void SetDefaultWeapon()
-    {
-        playerWeapon.SetPlayer(this);
-    }
     public void SetWeapon(Weapon weapon)
     {
-        //playerWeapon?.Destroy();
-        playerWeapon = weapon;
+        Weapon newWeapon = Instantiate(weapon, playerTransform.position, Quaternion.identity);
+
+        playerWeapon = newWeapon;
         playerWeapon.SetPlayer(this);
-        //weapon.SetWeaponOffset();
     }
     public void DestroyWeapon()
     {
-        playerWeapon.Destroy();
+        playerWeapon?.Destroy();
     }
-
-    /*
-    public void SetWeapon(Weapon weapon)
-    {
-        playerWeapon = weapon;
-        weapon.SetPlayer(this);
-    }
-    public void SetWeapon(Weapon weapon, MeshFilter mesh)
-    {
-        playerWeapon = weapon;
-        //Debug.Log(mesh);
-        weapon.SetMesh(mesh);
-        
-        weapon.SetPlayer(this);
-    }
-    */
 
     #endregion
 }

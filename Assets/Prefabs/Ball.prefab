@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1654587334093463061}
   - component: {fileID: 919132148029729149}
   - component: {fileID: 919132148029729148}
+  - component: {fileID: 473050946}
   m_Layer: 8
   m_Name: Ball
   m_TagString: Untagged
@@ -59,8 +60,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bfeb162c89123a048bac3f5bdd021a29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerWeapon: {fileID: 0}
-  movementSpeed: 7
+  playerWeapon: {fileID: 1202656414923337549, guid: 0a55bfe7fd46a554989b2510cf9c0557,
+    type: 3}
+  movementSpeed: 10
 --- !u!54 &919132148029729148
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -77,6 +79,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 4
   m_CollisionDetection: 1
+--- !u!114 &473050946
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2068615152076378757}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a49e0099e54df804ab80e0e246881f0e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7005623433054890588
 GameObject:
   m_ObjectHideFlags: 0

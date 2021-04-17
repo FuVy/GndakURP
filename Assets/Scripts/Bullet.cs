@@ -15,6 +15,7 @@ public class Bullet : MonoBehaviour //LAM
         objectTransform = GetComponent<Transform>(); //LAM
         bulletRigidbody = GetComponent<Rigidbody>();
         mainCamera = Camera.main; //LAM
+        Destroy(gameObject, 4f);
     }
     void Start()
     {

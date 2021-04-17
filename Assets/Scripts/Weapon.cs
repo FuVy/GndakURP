@@ -33,6 +33,7 @@ public class Weapon : MonoBehaviour
     protected Player player; //Временно, заменить в конце
     
     bool ableToShoot;
+    bool isReloading;
     int currentMagazineSize;
     string team;
 
@@ -47,6 +48,7 @@ public class Weapon : MonoBehaviour
     }
     void Start()
     {
+        animator.SetFloat("reloadTime", 1f/reloadTime);
         currentMagazineSize = maximumMagazineCapacity;
         ableToShoot = true;
         team = player.GetTeam();
@@ -75,13 +77,13 @@ public class Weapon : MonoBehaviour
     IEnumerator WaitBeforeShooting()
     {
         ableToShoot = false;
-        yield return new WaitForSeconds(firerate);
         currentMagazineSize--;
+        yield return new WaitForSeconds(firerate);
         if (currentMagazineSize > 0)
         {
             ableToShoot = true;
         }
-        else
+        else if (!isReloading)
         {
             HandleReloading(); //auto reload
         }
@@ -90,11 +92,10 @@ public class Weapon : MonoBehaviour
     IEnumerator WaitForReload()
     {
         yield return new WaitForSeconds(reloadTime);
-        //Reload();
+        Reload();
     }
     private void Shoot()
     {
-        
         animator.SetTrigger("Fire");
         for (int i = 0; i < shootingPositions.Length; i++)
         {
@@ -103,23 +104,29 @@ public class Weapon : MonoBehaviour
     }
     private void HandleShooting()
     {
-        if ((Input.GetAxisRaw("Fire1") == 1) && ableToShoot)
+        if ((Input.GetAxisRaw("Fire1") == 1) && ableToShoot && !isReloading)
         {
             Shoot();
             StartCoroutine(WaitBeforeShooting());
         }
+        if (Input.GetAxisRaw("Reload") == 1 && !isReloading)
+        {
+            HandleReloading();
+        }
     }
     private void HandleReloading()
     {
+        currentMagazineSize = 0;
+        isReloading = true;
+        ableToShoot = false;
         animator.SetTrigger("Reload");
         StartCoroutine(WaitForReload());
-        Debug.Log("Reloading");
-        //Reload();
     }
     private void Reload()
     {
         currentMagazineSize = maximumMagazineCapacity;
         ableToShoot = true;
+        isReloading = false;
     }
     #endregion
 
@@ -130,10 +137,9 @@ public class Weapon : MonoBehaviour
         playerTransform = player.GetComponent<Transform>();
 
     }
+    #endregion
     public void Destroy()
     {
         Destroy(gameObject);
     }
-
-    #endregion
 }

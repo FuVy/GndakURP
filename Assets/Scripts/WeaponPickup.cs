@@ -6,17 +6,22 @@ public class WeaponPickup : MonoBehaviour
 {
     [SerializeField]
     GameObject weaponObject;
+    [SerializeField]
+    float cooldown = 10f;
+
     Weapon weapon;
     MeshFilter weaponMesh;
     Transform objectTransform;
-    int maxUses;
-    int currentUses;
+    Collider objectCollider;
+    GameObject body;
     private void Awake()
     {
         objectTransform = GetComponent<Transform>();
         weaponMesh = weaponObject.transform.Find("Body/AnimatedBody").GetComponent<MeshFilter>();
         objectTransform.Find("PickupBody").GetComponent<MeshFilter>().mesh = weaponMesh.sharedMesh;
         weapon = weaponObject.GetComponent<Weapon>();
+        objectCollider = GetComponent<CapsuleCollider>();
+        body = objectTransform.Find("PickupBody").gameObject;
     }
     private void Start()
     {
@@ -30,10 +35,18 @@ public class WeaponPickup : MonoBehaviour
         Player player = other.GetComponent<Player>();
         if (player)
         {
-            Weapon newWeapon = Instantiate(weapon, player.transform.position, Quaternion.identity);
             player.DestroyWeapon();
-            player.SetWeapon(newWeapon);
+            player.SetWeapon(weapon);
+            StartCoroutine(StartCooldown());
         }
-        
+    }
+
+    IEnumerator StartCooldown()
+    {
+        body.SetActive(false);
+        objectCollider.enabled = false;
+        yield return new WaitForSeconds(cooldown);
+        body.SetActive(true);
+        objectCollider.enabled = true;
     }
 }
