@@ -25,6 +25,10 @@ public class DummyWeapon : Weapon
             }
         }
     }
+    new private void Update()
+    {
+        
+    }
     new public void SetCharacter(Character character)
     {
         Debug.Log(character);
