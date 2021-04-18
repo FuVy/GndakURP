@@ -23,24 +23,16 @@ public class WeaponPickup : MonoBehaviour
         objectCollider = GetComponent<CapsuleCollider>();
         body = objectTransform.Find("PickupBody").gameObject;
     }
-    private void Start()
-    {
-        
-        
-    }
-
     private void OnTriggerEnter(Collider other)
     {
-        //Debug.Log(weaponMesh);
-        Player player = other.GetComponent<Player>();
-        if (player)
+        WeaponHandler weaponHandler = other.GetComponent<WeaponHandler>();
+        if (weaponHandler)
         {
-            player.DestroyWeapon();
-            player.SetWeapon(weapon);
+            weaponHandler.DestroyWeapon();
+            weaponHandler.SetWeapon(weapon);
             StartCoroutine(StartCooldown());
         }
     }
-
     IEnumerator StartCooldown()
     {
         body.SetActive(false);

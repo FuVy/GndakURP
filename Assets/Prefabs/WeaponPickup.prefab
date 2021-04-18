@@ -60,7 +60,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d11bac576735a544bb17484807a8429, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponObject: {fileID: 4634780919388258975, guid: 0a55bfe7fd46a554989b2510cf9c0557,
+  weaponObject: {fileID: 6764673770472120371, guid: 42c766bcedb38864297f4669e908657b,
     type: 3}
   cooldown: 10
 --- !u!95 &5694319270664893010

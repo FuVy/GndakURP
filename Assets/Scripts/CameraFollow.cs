@@ -5,7 +5,8 @@ using UnityEngine;
 public class CameraFollow : MonoBehaviour
 {
     [SerializeField]
-    Transform playerTransform;
+    Character character;
+    Transform characterTransform;
     [SerializeField]
     [Range(0.0f, 1f)]
     float cameraShaking;
@@ -15,13 +16,21 @@ public class CameraFollow : MonoBehaviour
     {
         mainCamera = GetComponent<Camera>();
         cameraTransform = GetComponent<Transform>();
+        characterTransform = character.GetComponent<Transform>();
     }
     void FixedUpdate()
     {
         Vector3 cursorPosition = Input.mousePosition;
         cursorPosition.z = mainCamera.nearClipPlane;
-        Vector3 desiredPosition = Vector3.Lerp(playerTransform.position, mainCamera.ScreenToWorldPoint(cursorPosition), cameraShaking);
+        Vector3 desiredPosition = Vector3.Lerp(characterTransform.position, mainCamera.ScreenToWorldPoint(cursorPosition), cameraShaking);
         desiredPosition.y = 15f;
         cameraTransform.position = desiredPosition;
+    }
+    public void CheckPlayer(Character character)
+    {
+        if (this.character == character)
+        {
+            this.enabled = false;
+        }
     }
 }

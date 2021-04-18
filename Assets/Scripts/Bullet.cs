@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bullet : MonoBehaviour //LAM
+public class Bullet : MonoBehaviour 
 {
     private int damage;
     private float bulletSpeed;
@@ -10,6 +10,20 @@ public class Bullet : MonoBehaviour //LAM
     Transform direction;
     Transform objectTransform;
     Camera mainCamera;
+    LayerMask friendlyLayer;
+    private void OnTriggerEnter(Collider other)
+    {
+        //Debug.Log(other.gameObject.layer);
+        if (friendlyLayer != other.gameObject.layer)
+        {
+            //Debug.Log(damage);
+            other.GetComponent<Health>()?.ChangeHealth(-damage);
+            Destroy(gameObject);
+        }
+        //Play destroy vfx
+        //Destroy(gameObject);
+    }
+
     void Awake()
     {
         objectTransform = GetComponent<Transform>(); //LAM
@@ -19,11 +33,8 @@ public class Bullet : MonoBehaviour //LAM
     }
     void Start()
     {
-        //RotateObject(); //LAM
-        //objectTransform.rotation = direction.rotation;
         objectTransform.parent = null;
         objectTransform.position = new Vector3(objectTransform.position.x, 1f, objectTransform.position.z);
-
         bulletRigidbody.velocity = objectTransform.forward * bulletSpeed;
     }
     #region GetSet
@@ -31,9 +42,10 @@ public class Bullet : MonoBehaviour //LAM
     {
         this.damage = damage;
     }
-    public void SetTeam(string team)
+    public void SetTeam(LayerMask layer)
     {
-        gameObject.layer = LayerMask.NameToLayer(team);
+        //gameObject.layer = LayerMask.NameToLayer(team);
+        friendlyLayer = layer;
     }
     public void SetBulletSpeed(float speed)
     {

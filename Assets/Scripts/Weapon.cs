@@ -18,49 +18,44 @@ public class Weapon : MonoBehaviour
     [SerializeField]
     Vector3 weaponOffset;
     [SerializeField]
-    float desiredZRotation = -45f;
+    protected float desiredZRotation = -45f;
     [SerializeField]
     ShootingPosition[] shootingPositions;
 
-    protected Transform playerTransform;
+    protected Transform characterTransform;
     protected Transform weaponBody;
-    protected Transform objectTransform;
-    protected Camera mainCamera;
-    protected LookAtMouse looker;
-    protected Animator animator;
+    Transform objectTransform;
+    Camera mainCamera;
+    protected Looker looker;
+    Animator animator;
 
-    [SerializeField]
-    protected Player player; //Временно, заменить в конце
+    protected Character character; 
     
-    bool ableToShoot;
-    bool isReloading;
+    protected bool ableToShoot;
+    protected bool isReloading;
     int currentMagazineSize;
-    string team;
 
     private void Awake()
     {
-        
         objectTransform = GetComponent<Transform>();
         mainCamera = Camera.main;
         animator = GetComponent<Animator>();
         weaponBody = objectTransform.Find("Body");
-        looker = GetComponent<LookAtMouse>();
+        looker = GetComponent<Looker>();
     }
-    void Start()
+    protected virtual void Start()
     {
         animator.SetFloat("reloadTime", 1f/reloadTime);
         currentMagazineSize = maximumMagazineCapacity;
         ableToShoot = true;
-        team = player.GetTeam();
-        //gameObject.layer = LayerMask.NameToLayer(team);
         SetWeaponOffset();
     }
 
-    void FixedUpdate()
+    protected virtual void FixedUpdate()
     {
-        objectTransform.position = playerTransform.position;    // + weaponOffset;
+        objectTransform.position = characterTransform.position;    // + weaponOffset;
     }
-    protected virtual void Update()
+    private void Update()
     {
         looker.RotateObject(weaponBody.transform, desiredZRotation);
         
@@ -68,7 +63,7 @@ public class Weapon : MonoBehaviour
 
         HandleShooting();
     }
-    public void SetWeaponOffset()
+    private void SetWeaponOffset()
     {
         weaponBody.localPosition = weaponOffset;
     }
@@ -94,12 +89,12 @@ public class Weapon : MonoBehaviour
         yield return new WaitForSeconds(reloadTime);
         Reload();
     }
-    private void Shoot()
+    private void Fire()
     {
         animator.SetTrigger("Fire");
         for (int i = 0; i < shootingPositions.Length; i++)
         {
-            shootingPositions[i].Fire(damage, team, bulletSpeed);
+            shootingPositions[i].Fire(damage, character.GetTeam(), bulletSpeed);
         }
     }
     private void HandleShooting()
@@ -107,13 +102,19 @@ public class Weapon : MonoBehaviour
         if ((Input.GetAxisRaw("Fire1") == 1) && ableToShoot && !isReloading)
         {
             Shoot();
-            StartCoroutine(WaitBeforeShooting());
         }
         if (Input.GetAxisRaw("Reload") == 1 && !isReloading)
         {
             HandleReloading();
         }
     }
+
+    protected void Shoot()
+    {
+        Fire();
+        StartCoroutine(WaitBeforeShooting());
+    }
+
     private void HandleReloading()
     {
         currentMagazineSize = 0;
@@ -131,13 +132,35 @@ public class Weapon : MonoBehaviour
     #endregion
 
     #region GetSet
-    public void SetPlayer(Player player)
+    public void SetCharacter(Character character)
     {
-        this.player = player;
-        playerTransform = player.GetComponent<Transform>();
-
+        this.character = character;
+        characterTransform = character.GetComponent<Transform>();
+        DummyTest();
+    }
+    protected void Setup(float reloadTime, int damage, int maximumMagazineCapacity, float firerate, float bulletSpeed, Vector3 weaponOffset, float desiredZRotation, ShootingPosition[] shootingPositions)
+    {
+        this.reloadTime = reloadTime;
+        this.damage = damage;
+        this.maximumMagazineCapacity = maximumMagazineCapacity;
+        this.firerate = firerate;
+        this.bulletSpeed = bulletSpeed;
+        this.weaponOffset = weaponOffset;
+        this.desiredZRotation = desiredZRotation;
+        this.shootingPositions = shootingPositions;
     }
     #endregion
+    private void DummyTest()
+    {
+        Dummy dummy = character.GetComponent<Dummy>();
+        if (dummy)
+        {
+            DummyWeapon dummyWeapon = gameObject.AddComponent<DummyWeapon>();
+            dummyWeapon.Setup(reloadTime, damage, maximumMagazineCapacity, firerate, bulletSpeed, weaponOffset, desiredZRotation, shootingPositions);
+            dummyWeapon.SetCharacter(character);
+            Destroy(this);
+        }
+    }
     public void Destroy()
     {
         Destroy(gameObject);
