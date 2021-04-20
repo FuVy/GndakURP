@@ -51,6 +51,7 @@ public class Weapon : MonoBehaviour
         currentMagazineSize = maximumMagazineCapacity;
         ableToShoot = true;
         SetWeaponOffset();
+        gameObject.layer = characterTransform.gameObject.layer;
     }
 
     protected virtual void FixedUpdate()

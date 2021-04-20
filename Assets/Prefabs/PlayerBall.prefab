@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 473050946}
   - component: {fileID: 473050950}
   m_Layer: 8
-  m_Name: Ball
+  m_Name: PlayerBall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -76,7 +76,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 4
+  m_Constraints: 0
   m_CollisionDetection: 1
 --- !u!114 &473050946
 MonoBehaviour:
@@ -108,6 +108,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startingWeapon: {fileID: 7129978642175903552, guid: 42c766bcedb38864297f4669e908657b,
     type: 3}
+  currentWeapon: {fileID: 0}
 --- !u!1 &7005623433054890588
 GameObject:
   m_ObjectHideFlags: 0

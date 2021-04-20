@@ -55,7 +55,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 8
+  m_Radius: 11
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &3128465813826828880
 GameObject:
@@ -115,7 +115,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 147f635c23387a64da22ae2f6279f4c3, type: 2}
+  - {fileID: 2100000, guid: 74dbb6a65be9f0e4aaa932190704b899, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -216,7 +216,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 100
   currentHealth: 100
-  respawnPosition: {x: -10, y: 0.8, z: -0.54}
+  respawnPosition: {x: -14, y: 0.8, z: -5}
   respawnTime: 2
 --- !u!114 &5355468732599140170
 MonoBehaviour:

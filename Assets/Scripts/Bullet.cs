@@ -10,11 +10,11 @@ public class Bullet : MonoBehaviour
     Transform direction;
     Transform objectTransform;
     Camera mainCamera;
-    LayerMask friendlyLayer;
+    LayerMask friendlyLayers;
     private void OnTriggerEnter(Collider other)
     {
         //Debug.Log(other.gameObject.layer);
-        if (friendlyLayer != other.gameObject.layer)
+        if (friendlyLayers != other.gameObject.layer)
         {
             //Debug.Log(damage);
             other.GetComponent<Health>()?.ChangeHealth(-damage);
@@ -45,7 +45,7 @@ public class Bullet : MonoBehaviour
     public void SetTeam(LayerMask layer)
     {
         //gameObject.layer = LayerMask.NameToLayer(team);
-        friendlyLayer = layer;
+        friendlyLayers = layer;
     }
     public void SetBulletSpeed(float speed)
     {

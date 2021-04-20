@@ -10,6 +10,7 @@ public class Character : MonoBehaviour
 
     float movementX;
     float movementZ;
+    Vector2 movementVector;
 
     [SerializeField]
     float movementSpeed;
@@ -31,10 +32,13 @@ public class Character : MonoBehaviour
     {
         movementX = Input.GetAxis("Horizontal");
         movementZ = Input.GetAxis("Vertical");
+        //movementVector = new Vector2(movementX, movementZ).normalized;
     }
     private void Move()
     {
+        
         Vector3 movement = new Vector3(movementX * movementSpeed, 0, movementZ * movementSpeed);
+        //Vector3 movement = new Vector3(movementVector.x * movementSpeed, 0, movementVector.y * movementSpeed);
         characterRigidbody.velocity = movement;
     }
 

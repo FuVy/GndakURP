@@ -19,8 +19,8 @@ TagManager:
   - PickupPoint
   - Wall
   - Bullet
-  - 
-  - 
+  - RedSpawn
+  - BlueSpawn
   - 
   - 
   - 
