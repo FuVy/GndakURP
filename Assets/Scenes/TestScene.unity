@@ -429,11 +429,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1337760684, guid: 5e8dd193c64a8e4469fa53bc8aa8a097, type: 3}
-      propertyPath: weaponObject
-      value: 
-      objectReference: {fileID: 4634780919388258975, guid: 0a55bfe7fd46a554989b2510cf9c0557,
-        type: 3}
     - target: {fileID: 8687327955959222785, guid: 5e8dd193c64a8e4469fa53bc8aa8a097,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -493,11 +488,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: WeaponPickup (1)
-      objectReference: {fileID: 0}
-    - target: {fileID: 8687327957391431145, guid: 5e8dd193c64a8e4469fa53bc8aa8a097,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5e8dd193c64a8e4469fa53bc8aa8a097, type: 3}
@@ -646,11 +636,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2068615152082606737, guid: f2bb5b0465206ef43bbd272fbccffcda,
-        type: 3}
-      propertyPath: target
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 6262045229453050505, guid: f2bb5b0465206ef43bbd272fbccffcda,
         type: 3}
       propertyPath: m_Name
@@ -659,7 +644,7 @@ PrefabInstance:
     - target: {fileID: 6749928656774813747, guid: f2bb5b0465206ef43bbd272fbccffcda,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.79
+      value: 6.49
       objectReference: {fileID: 0}
     - target: {fileID: 6749928656774813747, guid: f2bb5b0465206ef43bbd272fbccffcda,
         type: 3}
@@ -669,7 +654,7 @@ PrefabInstance:
     - target: {fileID: 6749928656774813747, guid: f2bb5b0465206ef43bbd272fbccffcda,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -2.33
+      value: 6.61
       objectReference: {fileID: 0}
     - target: {fileID: 6749928656774813747, guid: f2bb5b0465206ef43bbd272fbccffcda,
         type: 3}
@@ -720,6 +705,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1337760684, guid: 5e8dd193c64a8e4469fa53bc8aa8a097, type: 3}
+      propertyPath: weaponObject
+      value: 
+      objectReference: {fileID: 6764673770472120371, guid: 42c766bcedb38864297f4669e908657b,
+        type: 3}
     - target: {fileID: 8687327955959222785, guid: 5e8dd193c64a8e4469fa53bc8aa8a097,
         type: 3}
       propertyPath: m_LocalPosition.x

@@ -8,6 +8,10 @@ public class Dummy : Character
     Character target;
     [SerializeField]
     LayerMask layerMask;
+    private void OnEnable()
+    {
+        target = null;
+    }
     private void FixedUpdate()
     {  
 

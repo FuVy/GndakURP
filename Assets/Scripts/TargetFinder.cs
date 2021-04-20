@@ -6,14 +6,21 @@ public class TargetFinder : MonoBehaviour
 {
     DummyWeapon weapon;
     Character target;
-    private void OnTriggerEnter(Collider other)
+    Dummy dummyObject;
+    
+    private void Awake()
     {
+        dummyObject = transform.parent.GetComponent<Dummy>();
+    }
+    private void OnTriggerStay(Collider other) 
+    {
+        //Debug.Log(other.name);
         target = other.GetComponent<Character>();
-        if (target)
-        {
-            transform.parent.GetComponent<Dummy>().SetTarget(target);
+        //if (target)
+        //{
+            dummyObject.SetTarget(target);
             weapon.SetTarget(target);
-        }
+        //}
     }
     public void SetWeapon(DummyWeapon weapon)
     {

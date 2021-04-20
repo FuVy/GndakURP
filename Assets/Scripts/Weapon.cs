@@ -21,6 +21,8 @@ public class Weapon : MonoBehaviour
     protected float desiredZRotation = -45f;
     [SerializeField]
     ShootingPosition[] shootingPositions;
+    [SerializeField]
+    AudioSource[] audioSources;
 
     protected Transform characterTransform;
     protected Transform weaponBody;
@@ -91,6 +93,7 @@ public class Weapon : MonoBehaviour
     }
     private void Fire()
     {
+        audioSources[0].Play();
         animator.SetTrigger("Fire");
         for (int i = 0; i < shootingPositions.Length; i++)
         {
@@ -117,6 +120,7 @@ public class Weapon : MonoBehaviour
 
     private void HandleReloading()
     {
+        audioSources[1].Play();
         currentMagazineSize = 0;
         isReloading = true;
         ableToShoot = false;
@@ -138,7 +142,7 @@ public class Weapon : MonoBehaviour
         characterTransform = character.GetComponent<Transform>();
         DummyTest();
     }
-    protected void Setup(float reloadTime, int damage, int maximumMagazineCapacity, float firerate, float bulletSpeed, Vector3 weaponOffset, float desiredZRotation, ShootingPosition[] shootingPositions)
+    protected void Setup(float reloadTime, int damage, int maximumMagazineCapacity, float firerate, float bulletSpeed, Vector3 weaponOffset, float desiredZRotation, ShootingPosition[] shootingPositions, AudioSource[] audioSources)
     {
         this.reloadTime = reloadTime;
         this.damage = damage;
@@ -148,6 +152,7 @@ public class Weapon : MonoBehaviour
         this.weaponOffset = weaponOffset;
         this.desiredZRotation = desiredZRotation;
         this.shootingPositions = shootingPositions;
+        this.audioSources = audioSources;
     }
     #endregion
     private void DummyTest()
@@ -156,7 +161,7 @@ public class Weapon : MonoBehaviour
         if (dummy)
         {
             DummyWeapon dummyWeapon = gameObject.AddComponent<DummyWeapon>();
-            dummyWeapon.Setup(reloadTime, damage, maximumMagazineCapacity, firerate, bulletSpeed, weaponOffset, desiredZRotation, shootingPositions);
+            dummyWeapon.Setup(reloadTime, damage, maximumMagazineCapacity, firerate, bulletSpeed, weaponOffset, desiredZRotation, shootingPositions, audioSources);
             dummyWeapon.SetCharacter(character);
             Destroy(this);
         }

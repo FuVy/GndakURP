@@ -8,6 +8,10 @@ public class DummyWeapon : Weapon
     Character target = null;
     Transform targetTransform;
     LayerMask layerMask;
+    private void OnEnable()
+    {
+        target = null;
+    }
     protected override void Start()
     {
         base.Start();
@@ -25,9 +29,9 @@ public class DummyWeapon : Weapon
             }
         }
     }
-    new private void Update()
+    private void Update()
     {
-        
+
     }
     new public void SetCharacter(Character character)
     {
@@ -39,7 +43,7 @@ public class DummyWeapon : Weapon
     }
     public void SetTarget(Character target)
     {
-        Debug.Log(target);
+        //Debug.Log(target);
         this.target = target;
         if (target)
         {

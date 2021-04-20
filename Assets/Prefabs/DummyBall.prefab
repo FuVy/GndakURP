@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1629434715}
   - component: {fileID: 2296940772753900002}
   - component: {fileID: 1629434716}
-  m_Layer: 13
+  m_Layer: 11
   m_Name: TargetFinder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
