@@ -11,17 +11,29 @@ public class Bullet : MonoBehaviour
     Transform objectTransform;
     Camera mainCamera;
     LayerMask friendlyLayers;
+    [SerializeField]
+    ParticleSystem[] impactEffect;
+    Character sender;
+    Weapon weapon;
     private void OnTriggerEnter(Collider other)
     {
         //Debug.Log(other.gameObject.layer);
         if (friendlyLayers != other.gameObject.layer)
         {
             //Debug.Log(damage);
-            other.GetComponent<Health>()?.ChangeHealth(-damage);
-            Destroy(gameObject);
+            Health objectHealth = other.GetComponent<Health>();
+            objectHealth?.ChangeHealth(-damage);
+            objectTransform.Find("Body").GetComponent<MeshRenderer>().enabled = false;
+            bulletRigidbody.velocity = Vector3.zero;
+            Destroy(gameObject, 1f);
+            //impactEffect[0].Play();
+            if (objectHealth?.GetHealth() <= 0)
+            { 
+                sender.GetComponent<Dummy>()?.SetTarget(null);
+                weapon.GetComponent<DummyWeapon>()?.SetTarget(null);
+                //Debug.Log(sender.gameObject.GetComponent<Dummy>()?.GetTarget()); 
+            }
         }
-        //Play destroy vfx
-        //Destroy(gameObject);
     }
 
     void Awake()
@@ -51,9 +63,17 @@ public class Bullet : MonoBehaviour
     {
         bulletSpeed = speed;
     }
-    public void SetTransform(Transform transformy)
+    public void SetTransform(Transform transform)
     {
-        direction = transformy;
+        direction = transform;
+    }
+    public void SetCharacter(Character character)
+    {
+        sender = character;
+    }
+    public void SetWeapon(Weapon weapon)
+    {
+        this.weapon = weapon;
     }
     #endregion
 }

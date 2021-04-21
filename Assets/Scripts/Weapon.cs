@@ -98,7 +98,7 @@ public class Weapon : MonoBehaviour
         animator.SetTrigger("Fire");
         for (int i = 0; i < shootingPositions.Length; i++)
         {
-            shootingPositions[i].Fire(damage, character.GetTeam(), bulletSpeed);
+            shootingPositions[i].Fire(damage, character.GetTeam(), bulletSpeed, character, this);
         }
     }
     private void HandleShooting()

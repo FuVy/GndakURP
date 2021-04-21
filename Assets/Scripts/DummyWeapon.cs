@@ -35,7 +35,7 @@ public class DummyWeapon : Weapon
     }
     new public void SetCharacter(Character character)
     {
-        Debug.Log(character);
+        //Debug.Log(character);
         this.character = character;
         characterTransform = character.GetComponent<Transform>();
         character.GetComponent<WeaponHandler>().SetCurrentWeapon(this);

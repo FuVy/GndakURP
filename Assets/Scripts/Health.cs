@@ -12,7 +12,10 @@ public class Health : MonoBehaviour
     Vector3 respawnPosition;
     [SerializeField]
     float respawnTime = 0f;
-
+    public int GetHealth()
+    {
+        return currentHealth;
+    }
     public void ChangeHealth(int amount)
     {
         currentHealth += amount;
