@@ -12,6 +12,8 @@ public class Health : MonoBehaviour
     Vector3 respawnPosition;
     [SerializeField]
     float respawnTime = 0f;
+    [SerializeField]
+    HealthBar healthBar;
     public int GetHealth()
     {
         return currentHealth;
@@ -19,6 +21,7 @@ public class Health : MonoBehaviour
     public void ChangeHealth(int amount)
     {
         currentHealth += amount;
+        healthBar?.SetSlider(currentHealth);
         if (currentHealth > maxHealth)
         {
             currentHealth = maxHealth;
@@ -36,6 +39,7 @@ public class Health : MonoBehaviour
         Camera.main.GetComponent<CameraFollow>().enabled = true;
         GetComponent<SphereCollider>().enabled = true;
         transform.Find("Body").GetComponent<MeshRenderer>().enabled = true;
+        healthBar.SetMaxHealth(maxHealth);
     }
     private void Respawn()
     {
