@@ -39,7 +39,7 @@ public class Health : MonoBehaviour
         Camera.main.GetComponent<CameraFollow>().enabled = true;
         GetComponent<SphereCollider>().enabled = true;
         transform.Find("Body").GetComponent<MeshRenderer>().enabled = true;
-        healthBar.SetMaxHealth(maxHealth);
+        healthBar?.SetMaxHealth(maxHealth);
     }
     private void Respawn()
     {
