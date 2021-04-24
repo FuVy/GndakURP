@@ -9,44 +9,51 @@ public class Bullet : MonoBehaviour
     Rigidbody bulletRigidbody;
     Transform direction;
     Transform objectTransform;
-    Camera mainCamera;
     LayerMask friendlyLayers;
     [SerializeField]
-    ParticleSystem[] impactEffect;
+    MeshRenderer bodyRenderer;
     Character sender;
     Weapon weapon;
     private void OnTriggerEnter(Collider other)
     {
-        //Debug.Log(other.gameObject.layer);
         if (friendlyLayers != other.gameObject.layer)
         {
-            //Debug.Log(damage);
-            Health objectHealth = other.GetComponent<Health>();
-            objectHealth?.ChangeHealth(-damage);
-            objectTransform.Find("Body").GetComponent<MeshRenderer>().enabled = false;
-            bulletRigidbody.velocity = Vector3.zero;
-            Destroy(gameObject, 1f);
-            //impactEffect[0].Play();
-            if (objectHealth?.GetHealth() <= 0)
-            { 
-                sender.GetComponent<Dummy>()?.SetTarget(null);
-                weapon.GetComponent<DummyWeapon>()?.SetTarget(null);
-                //Debug.Log(sender.gameObject.GetComponent<Dummy>()?.GetTarget()); 
-            }
+            HandleHit(other);
+        }
+    }
+
+    private void HandleHit(Collider other)
+    {
+        Health objectHealth = other.GetComponent<Health>();
+        objectHealth?.ChangeHealth(-damage);
+        bodyRenderer.enabled = false;
+        bulletRigidbody.velocity = Vector3.zero;
+        Destroy(gameObject, 1f);
+        //impactEffect[0].Play();
+        if (objectHealth?.GetHealth() <= 0)
+        {
+            sender.GetComponent<Dummy>()?.SetTarget(null);
+            weapon.GetComponent<DummyWeapon>()?.SetTarget(null);
         }
     }
 
     void Awake()
     {
-        objectTransform = GetComponent<Transform>(); //LAM
+        objectTransform = GetComponent<Transform>(); 
         bulletRigidbody = GetComponent<Rigidbody>();
-        mainCamera = Camera.main; //LAM
         Destroy(gameObject, 4f);
     }
     void Start()
     {
+        Setup();
+    }
+
+    private void Setup()
+    {
         objectTransform.parent = null;
         objectTransform.position = new Vector3(objectTransform.position.x, 1f, objectTransform.position.z);
+        //objectTransform.rotation = Quaternion 
+        
         bulletRigidbody.velocity = objectTransform.forward * bulletSpeed;
     }
     #region GetSet

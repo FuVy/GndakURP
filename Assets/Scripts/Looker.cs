@@ -13,7 +13,7 @@ public class Looker : MonoBehaviour
     {
         objectTransform = GetComponent<Transform>();
         mainCamera = Camera.main;
-        layerMask = LayerMask.GetMask("Ground");
+        //layerMask = LayerMask.GetMask("Ground");
     }
 
     public void RotateObject(Vector3 targetPosition,Transform secondBody, float desiredZRotation, LayerMask layerMask)

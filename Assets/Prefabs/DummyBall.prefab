@@ -44,6 +44,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a78df19548893fb40a7c8b47cf0e8ac6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  radius: 0
+  dummyObject: {fileID: 2068615152082606737}
 --- !u!135 &1629434716
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -218,6 +220,8 @@ MonoBehaviour:
   currentHealth: 100
   respawnPosition: {x: -14, y: 0.8, z: -5}
   respawnTime: 2
+  healthBar: {fileID: 0}
+  meshRenderer: {fileID: 5489378967398315189}
 --- !u!114 &5355468732599140170
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -250,3 +254,4 @@ MonoBehaviour:
   layerMask:
     serializedVersion: 2
     m_Bits: 4864
+  targetFinder: {fileID: 2296940772753900002}

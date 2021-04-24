@@ -20,6 +20,7 @@ public class DummyWeapon : Weapon
     protected override void FixedUpdate()
     {
         base.FixedUpdate();
+
         if (target != null)
         {
             looker.RotateObject(targetTransform.position, weaponBody, desiredZRotation, layerMask);
@@ -33,13 +34,12 @@ public class DummyWeapon : Weapon
     {
 
     }
-    new public void SetCharacter(Character character)
+    public void SetDummy(Dummy dummy)
     {
-        //Debug.Log(character);
-        this.character = character;
-        characterTransform = character.GetComponent<Transform>();
-        character.GetComponent<WeaponHandler>().SetCurrentWeapon(this);
-        character.transform.Find("TargetFinder").GetComponent<TargetFinder>().SetWeapon(this);
+        this.character = dummy;
+        characterTransform = dummy.GetTransform();
+        dummy.GetWeaponHandler().SetCurrentWeapon(this);
+        dummy.GetTargetFinder().SetWeapon(this);
     }
     public void SetTarget(Character target)
     {
@@ -47,7 +47,7 @@ public class DummyWeapon : Weapon
         this.target = target;
         if (target)
         {
-            targetTransform = target.transform;
+            targetTransform = target.GetTransform();
         }
     }
 }

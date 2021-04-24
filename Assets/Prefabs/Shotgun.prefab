@@ -520,7 +520,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   layerMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 1024
 --- !u!95 &845668381
 Animator:
   serializedVersion: 3
@@ -566,3 +566,5 @@ MonoBehaviour:
   audioSources:
   - {fileID: 3858969543780179894}
   - {fileID: 4781444942378682296}
+  weaponBody: {fileID: 6173756505601628802}
+  weaponMesh: {fileID: 7763862103579562039}

@@ -4969,8 +4969,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fda9ddb40212d13488c02d31c675b7c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  impactEffect:
-  - {fileID: 3092942510125456317}
+  bodyRenderer: {fileID: 7164087546784366389}
 --- !u!198 &6809398121029546050
 ParticleSystem:
   m_ObjectHideFlags: 0

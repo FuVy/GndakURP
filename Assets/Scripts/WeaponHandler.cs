@@ -5,15 +5,15 @@ using UnityEngine;
 public class WeaponHandler : MonoBehaviour
 {
     [SerializeField] 
-    Weapon startingWeapon; //set starting weapon
-    [SerializeField] //временно
+    Weapon startingWeapon; //sets starting weapon
+    [SerializeField] 
     Weapon currentWeapon;
     Transform objectTransform;
-    Character player;
+    Character character;
     private void Awake()
     {
         objectTransform = GetComponent<Transform>();
-        player = GetComponent<Character>();
+        character = GetComponent<Character>();
     }
     public void Start()
     {
@@ -29,7 +29,7 @@ public class WeaponHandler : MonoBehaviour
         Weapon newWeapon = Instantiate(weapon, objectTransform.position, Quaternion.identity);
 
         currentWeapon = newWeapon;
-        currentWeapon.SetCharacter(player);
+        currentWeapon.SetCharacter(character);
     }
     public void SetCurrentWeapon(Weapon weapon)
     {

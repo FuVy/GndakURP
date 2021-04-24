@@ -1064,7 +1064,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh16192
+  m_Name: pb_Mesh16196
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -3342,6 +3342,10 @@ PrefabInstance:
       propertyPath: healthBar
       value: 
       objectReference: {fileID: 218234112}
+    - target: {fileID: 473050946, guid: a46b0ae2c077d5547aa1e7e70a38a991, type: 3}
+      propertyPath: meshRenderer
+      value: 
+      objectReference: {fileID: 1851113344}
     - target: {fileID: 1729067976137672767, guid: a46b0ae2c077d5547aa1e7e70a38a991,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3773,6 +3777,12 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!23 &1851113344 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 467322567598580921, guid: a46b0ae2c077d5547aa1e7e70a38a991,
+    type: 3}
+  m_PrefabInstance: {fileID: 1363929354}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2087878749
 GameObject:
   m_ObjectHideFlags: 0

@@ -23,11 +23,14 @@ public class Weapon : MonoBehaviour
     ShootingPosition[] shootingPositions;
     [SerializeField]
     AudioSource[] audioSources;
+    [SerializeField]
+    protected Transform weaponBody;
+    [SerializeField]
+    MeshFilter weaponMesh;
 
     protected Transform characterTransform;
-    protected Transform weaponBody;
+    
     Transform objectTransform;
-    Camera mainCamera;
     protected Looker looker;
     Animator animator;
 
@@ -40,9 +43,8 @@ public class Weapon : MonoBehaviour
     private void Awake()
     {
         objectTransform = GetComponent<Transform>();
-        mainCamera = Camera.main;
         animator = GetComponent<Animator>();
-        weaponBody = objectTransform.Find("Body");
+        //weaponBody = objectTransform.Find("Body");
         looker = GetComponent<Looker>();
     }
     protected virtual void Start()
@@ -68,6 +70,7 @@ public class Weapon : MonoBehaviour
     }
     private void SetWeaponOffset()
     {
+        Debug.Log(weaponBody);
         weaponBody.localPosition = weaponOffset;
     }
 
@@ -85,12 +88,6 @@ public class Weapon : MonoBehaviour
         {
             HandleReloading(); //auto reload
         }
-    }
-
-    IEnumerator WaitForReload()
-    {
-        yield return new WaitForSeconds(reloadTime);
-        Reload();
     }
     private void Fire()
     {
@@ -126,8 +123,15 @@ public class Weapon : MonoBehaviour
         isReloading = true;
         ableToShoot = false;
         animator.SetTrigger("Reload");
-        StartCoroutine(WaitForReload());
+        //StartCoroutine(WaitForReload());
     }
+    /* 
+    IEnumerator WaitForReload()
+    {
+        yield return new WaitForSeconds(reloadTime);
+        Reload();
+    }
+    */
     private void Reload()
     {
         currentMagazineSize = maximumMagazineCapacity;
@@ -140,10 +144,14 @@ public class Weapon : MonoBehaviour
     public void SetCharacter(Character character)
     {
         this.character = character;
-        characterTransform = character.GetComponent<Transform>();
+        characterTransform = character.GetTransform();
         DummyTest();
     }
-    protected void Setup(float reloadTime, int damage, int maximumMagazineCapacity, float firerate, float bulletSpeed, Vector3 weaponOffset, float desiredZRotation, ShootingPosition[] shootingPositions, AudioSource[] audioSources)
+    public MeshFilter GetMeshFilter()
+    {
+        return weaponMesh;
+    }
+    protected void Setup(float reloadTime, int damage, int maximumMagazineCapacity, float firerate, float bulletSpeed, Vector3 weaponOffset, float desiredZRotation, ShootingPosition[] shootingPositions, AudioSource[] audioSources, Transform weaponBody)
     {
         this.reloadTime = reloadTime;
         this.damage = damage;
@@ -154,6 +162,7 @@ public class Weapon : MonoBehaviour
         this.desiredZRotation = desiredZRotation;
         this.shootingPositions = shootingPositions;
         this.audioSources = audioSources;
+        this.weaponBody = weaponBody;
     }
     #endregion
     private void DummyTest()
@@ -162,8 +171,8 @@ public class Weapon : MonoBehaviour
         if (dummy)
         {
             DummyWeapon dummyWeapon = gameObject.AddComponent<DummyWeapon>();
-            dummyWeapon.Setup(reloadTime, damage, maximumMagazineCapacity, firerate, bulletSpeed, weaponOffset, desiredZRotation, shootingPositions, audioSources);
-            dummyWeapon.SetCharacter(character);
+            dummyWeapon.Setup(reloadTime, damage, maximumMagazineCapacity, firerate, bulletSpeed, weaponOffset, desiredZRotation, shootingPositions, audioSources, weaponBody);
+            dummyWeapon.SetDummy(dummy);
             Destroy(this);
         }
     }

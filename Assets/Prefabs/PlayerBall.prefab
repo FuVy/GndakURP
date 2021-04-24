@@ -94,6 +94,8 @@ MonoBehaviour:
   currentHealth: 100
   respawnPosition: {x: -10, y: 0.8, z: -0.54}
   respawnTime: 2
+  healthBar: {fileID: 0}
+  meshRenderer: {fileID: 467322567598580921}
 --- !u!114 &473050950
 MonoBehaviour:
   m_ObjectHideFlags: 0

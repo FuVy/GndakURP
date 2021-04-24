@@ -14,6 +14,20 @@ public class Health : MonoBehaviour
     float respawnTime = 0f;
     [SerializeField]
     HealthBar healthBar;
+
+    WeaponHandler weaponHandler;
+    Character character;
+    CameraFollow cameraFollow;
+    Collider attachedCollider;
+    [SerializeField]
+    MeshRenderer meshRenderer;
+    private void Awake()
+    {
+        weaponHandler = GetComponent<WeaponHandler>();
+        character = GetComponent<Character>();
+        cameraFollow = Camera.main.GetComponent<CameraFollow>();
+        attachedCollider = GetComponent<SphereCollider>();
+    }
     public int GetHealth()
     {
         return currentHealth;
@@ -34,11 +48,11 @@ public class Health : MonoBehaviour
     private void Setup()
     {
         currentHealth = maxHealth;
-        GetComponent<WeaponHandler>().Start();
-        GetComponent<Character>().enabled = true;
-        Camera.main.GetComponent<CameraFollow>().enabled = true;
-        GetComponent<SphereCollider>().enabled = true;
-        transform.Find("Body").GetComponent<MeshRenderer>().enabled = true;
+        weaponHandler.Start();
+        character.enabled = true;
+        cameraFollow.enabled = true;
+        attachedCollider.enabled = true;
+        meshRenderer.enabled = true;
         healthBar?.SetMaxHealth(maxHealth);
     }
     private void Respawn()
@@ -57,12 +71,11 @@ public class Health : MonoBehaviour
     }
     private void HideCharacter()
     {
-        GetComponent<WeaponHandler>().DestroyWeapon();
-        Character character = GetComponent<Character>();
+        weaponHandler.DestroyWeapon();
         character.enabled = false;
-        Camera.main.GetComponent<CameraFollow>().CheckPlayer(character);
-        transform.Find("Body").GetComponent<MeshRenderer>().enabled = false;
-        GetComponent<SphereCollider>().enabled = false;
+        cameraFollow.CheckPlayer(character);
+        meshRenderer.enabled = false;
+        attachedCollider.enabled = false;
     }
     IEnumerator WaitForRespawn()
     {

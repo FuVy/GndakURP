@@ -8,6 +8,8 @@ public class Dummy : Character
     Character target;
     [SerializeField]
     LayerMask layerMask;
+    [SerializeField]
+    TargetFinder targetFinder;
     private void OnEnable()
     {
         target = null;
@@ -19,6 +21,10 @@ public class Dummy : Character
     public Character GetTarget()
     {
         return target;
+    }
+    public TargetFinder GetTargetFinder()
+    {
+        return targetFinder;
     }
     public void SetTarget(Character target)
     {

@@ -10,6 +10,7 @@ public class WeaponPickup : MonoBehaviour
     float cooldown = 10f;
 
     Weapon weapon;
+    [SerializeField]
     MeshFilter weaponMesh;
     Transform objectTransform;
     Collider objectCollider;
@@ -17,7 +18,7 @@ public class WeaponPickup : MonoBehaviour
     private void Awake()
     {
         objectTransform = GetComponent<Transform>();
-        weaponMesh = weaponObject.transform.Find("Body/AnimatedBody").GetComponent<MeshFilter>();
+        //weaponMesh = weaponObject.transform.Find("Body/AnimatedBody").GetComponent<MeshFilter>();
         objectTransform.Find("PickupBody").GetComponent<MeshFilter>().mesh = weaponMesh.sharedMesh;
         weapon = weaponObject.GetComponent<Weapon>();
         objectCollider = GetComponent<CapsuleCollider>();

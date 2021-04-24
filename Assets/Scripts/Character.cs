@@ -7,6 +7,7 @@ public class Character : MonoBehaviour
     Rigidbody characterRigidbody;
     protected Transform characterTransform;
     Weapon characterWeapon;
+    WeaponHandler weaponHandler;
 
     float movementX;
     float movementZ;
@@ -16,6 +17,7 @@ public class Character : MonoBehaviour
     float movementSpeed;
     protected virtual void Awake()
     {
+        weaponHandler = GetComponent<WeaponHandler>();
         characterRigidbody = GetComponent<Rigidbody>();
         characterTransform = GetComponent<Transform>();
     }
@@ -57,6 +59,18 @@ public class Character : MonoBehaviour
     public Weapon GetWeapon()
     {
         return characterWeapon;
+    }
+    public WeaponHandler GetWeaponHandler()
+    {
+        return weaponHandler;
+    }
+    public Transform GetTransform()
+    {
+        return characterTransform;
+    }
+    public Character GetCharacter()
+    {
+        return this;
     }
     #endregion
     
