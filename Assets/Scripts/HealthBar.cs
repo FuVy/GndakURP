@@ -10,6 +10,7 @@ public class HealthBar : MonoBehaviour
     {
         slider = GetComponent<Slider>();
     }
+    #region GetSet
     public void SetMaxHealth(int health)
     {
         slider.maxValue = health;
@@ -19,4 +20,5 @@ public class HealthBar : MonoBehaviour
     {
         slider.value = health;
     }
+    #endregion
 }

@@ -15,12 +15,14 @@ public class ShootingPosition : MonoBehaviour
     {
         Vector3 bulletPosition = transform.position;
         Bullet bullet = Instantiate(this.bullet, bulletPosition, objectTransform.rotation);
+        SetBulletStats(damage, friendlyLayer, bulletSpeed, character, weapon, bullet);
+    }
+    private void SetBulletStats(int damage, LayerMask friendlyLayer, float bulletSpeed, Character character, Weapon weapon, Bullet bullet)
+    {
         bullet.SetDamage(damage);
         bullet.SetTeam(friendlyLayer);
         bullet.SetBulletSpeed(bulletSpeed);
         bullet.SetCharacter(character);
         bullet.SetWeapon(weapon);
-        //bullet.SetTransform(objectTransform);
-        //Debug.Log(gameObject.name + " Pew-pew");
     }
 }

@@ -28,10 +28,6 @@ public class Health : MonoBehaviour
         cameraFollow = Camera.main.GetComponent<CameraFollow>();
         attachedCollider = GetComponent<SphereCollider>();
     }
-    public int GetHealth()
-    {
-        return currentHealth;
-    }
     public void ChangeHealth(int amount)
     {
         currentHealth += amount;
@@ -81,5 +77,9 @@ public class Health : MonoBehaviour
     {
         yield return new WaitForSeconds(respawnTime);
         Respawn();
+    }
+    public int GetHealth()
+    {
+        return currentHealth;
     }
 }

@@ -44,7 +44,6 @@ public class Weapon : MonoBehaviour
     {
         objectTransform = GetComponent<Transform>();
         animator = GetComponent<Animator>();
-        //weaponBody = objectTransform.Find("Body");
         looker = GetComponent<Looker>();
     }
     protected virtual void Start()
@@ -63,14 +62,11 @@ public class Weapon : MonoBehaviour
     private void Update()
     {
         looker.RotateObject(weaponBody.transform, desiredZRotation);
-        
-        //looker.RotateObject();
 
         HandleShooting();
     }
     private void SetWeaponOffset()
     {
-        //Debug.Log(weaponBody);
         weaponBody.localPosition = weaponOffset;
     }
 
@@ -123,15 +119,7 @@ public class Weapon : MonoBehaviour
         isReloading = true;
         ableToShoot = false;
         animator.SetTrigger("Reload");
-        //StartCoroutine(WaitForReload());
     }
-    /* 
-    IEnumerator WaitForReload()
-    {
-        yield return new WaitForSeconds(reloadTime);
-        Reload();
-    }
-    */
     private void Reload()
     {
         currentMagazineSize = maximumMagazineCapacity;

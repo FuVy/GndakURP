@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Dummy : Character
 {
+    [Header("Dummy settings")]
     [SerializeField]
     Character target;
     [SerializeField]
@@ -14,10 +15,11 @@ public class Dummy : Character
     {
         target = null;
     }
-    private void FixedUpdate()
+    private void FixedUpdate() 
     {  
 
     }
+    #region GetSet
     public Character GetTarget()
     {
         return target;
@@ -30,4 +32,5 @@ public class Dummy : Character
     {
         this.target = target;
     }
+    #endregion
 }

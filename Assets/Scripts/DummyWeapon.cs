@@ -34,6 +34,7 @@ public class DummyWeapon : Weapon
     {
 
     }
+    #region GetSet
     public void SetDummy(Dummy dummy)
     {
         this.character = dummy;
@@ -43,11 +44,11 @@ public class DummyWeapon : Weapon
     }
     public void SetTarget(Character target)
     {
-        //Debug.Log(target);
         this.target = target;
         if (target)
         {
             targetTransform = target.GetTransform();
         }
     }
+    #endregion
 }

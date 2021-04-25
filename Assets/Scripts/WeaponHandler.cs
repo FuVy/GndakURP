@@ -24,6 +24,7 @@ public class WeaponHandler : MonoBehaviour
         currentWeapon?.Destroy(); 
         currentWeapon = null;
     }
+    #region GetSet
     public void SetWeapon(Weapon weapon)
     {
         Weapon newWeapon = Instantiate(weapon, objectTransform.position, Quaternion.identity);
@@ -35,4 +36,5 @@ public class WeaponHandler : MonoBehaviour
     {
         currentWeapon = weapon;
     }
+    #endregion
 }
