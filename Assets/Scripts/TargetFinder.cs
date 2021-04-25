@@ -10,12 +10,12 @@ public class TargetFinder : MonoBehaviour
     Character target;
     [SerializeField]
     Dummy dummyObject;
-    Transform dummyTransform;
+    //Transform dummyTransform;
     LayerMask friendlyLayer;
     private void Awake()
     {
         //dummyObject = transform.parent.GetComponent<Dummy>();
-        dummyTransform = dummyObject.transform;
+        //dummyTransform = dummyObject.transform;
         friendlyLayer = dummyObject.gameObject.layer;
     }
     

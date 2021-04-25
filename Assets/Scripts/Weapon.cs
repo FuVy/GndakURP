@@ -70,7 +70,7 @@ public class Weapon : MonoBehaviour
     }
     private void SetWeaponOffset()
     {
-        Debug.Log(weaponBody);
+        //Debug.Log(weaponBody);
         weaponBody.localPosition = weaponOffset;
     }
 

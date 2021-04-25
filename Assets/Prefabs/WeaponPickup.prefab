@@ -60,9 +60,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d11bac576735a544bb17484807a8429, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponObject: {fileID: 4634780919388258975, guid: 0a55bfe7fd46a554989b2510cf9c0557,
-    type: 3}
+  weapon: {fileID: -7416865858319542253, guid: 0a55bfe7fd46a554989b2510cf9c0557, type: 3}
   cooldown: 10
+  pickupMesh: {fileID: 8687327957391431146}
+  body: {fileID: 8687327957391431145}
 --- !u!95 &5694319270664893010
 Animator:
   serializedVersion: 3

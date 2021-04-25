@@ -5,24 +5,30 @@ using UnityEngine;
 public class WeaponPickup : MonoBehaviour
 {
     [SerializeField]
-    GameObject weaponObject;
+    //GameObject weaponObject;
+    Weapon weapon;
     [SerializeField]
     float cooldown = 10f;
 
-    Weapon weapon;
-    [SerializeField]
+    //[SerializeField]
     MeshFilter weaponMesh;
-    Transform objectTransform;
+    [SerializeField]
+    MeshFilter pickupMesh;
+    //Transform objectTransform;
     Collider objectCollider;
+    [SerializeField]
     GameObject body;
     private void Awake()
     {
-        objectTransform = GetComponent<Transform>();
+        //objectTransform = GetComponent<Transform>();
+
         //weaponMesh = weaponObject.transform.Find("Body/AnimatedBody").GetComponent<MeshFilter>();
-        objectTransform.Find("PickupBody").GetComponent<MeshFilter>().mesh = weaponMesh.sharedMesh;
-        weapon = weaponObject.GetComponent<Weapon>();
+        //objectTransform.Find("PickupBody").GetComponent<MeshFilter>().mesh = weaponMesh.sharedMesh;
+        //weapon = weaponObject.GetComponent<Weapon>();
+        //body = objectTransform.Find("PickupBody").gameObject;
+        weaponMesh = weapon.GetMeshFilter();
+        pickupMesh.mesh = weaponMesh.sharedMesh;
         objectCollider = GetComponent<CapsuleCollider>();
-        body = objectTransform.Find("PickupBody").gameObject;
     }
     private void OnTriggerEnter(Collider other)
     {
