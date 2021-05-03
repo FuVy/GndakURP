@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class NicknameFollow : MonoBehaviour
+public class NicknameHandler : MonoBehaviour
 {
     [SerializeField]
     Character target; //для просмотра в редакторе
@@ -31,6 +31,7 @@ public class NicknameFollow : MonoBehaviour
     {
         this.target = target;
         targetTransform = target.transform;
-        nickname.text = target.GetNickname();
+        int randomNumber = Random.Range(0, 1000); //id
+        nickname.text = target.GetNickname() + "#" + randomNumber.ToString("0000");
     }
 }

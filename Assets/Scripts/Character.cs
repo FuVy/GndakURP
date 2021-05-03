@@ -7,7 +7,7 @@ public class Character : MonoBehaviour
     [SerializeField]
     protected string nickname;
     [SerializeField]
-    NicknameFollow nicknameObject;
+    NicknameHandler nicknameObject;
     Rigidbody characterRigidbody;
     protected Transform characterTransform;
     Weapon characterWeapon;
@@ -28,7 +28,7 @@ public class Character : MonoBehaviour
     }
     void Start()
     {
-        NicknameFollow nickname = Instantiate(nicknameObject);
+        NicknameHandler nickname = Instantiate(nicknameObject);
         nickname.SetTarget(this);
         nicknameObject = nickname;
     }
