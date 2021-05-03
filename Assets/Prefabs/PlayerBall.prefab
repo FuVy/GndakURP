@@ -61,6 +61,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bfeb162c89123a048bac3f5bdd021a29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nickname: 
+  nicknameObject: {fileID: 6018160165400467936, guid: e589d1467522a2747bcddf9b1dbab55c,
+    type: 3}
   movementSpeed: 10
 --- !u!54 &919132148029729148
 Rigidbody:

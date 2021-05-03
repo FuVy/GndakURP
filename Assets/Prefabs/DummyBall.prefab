@@ -249,6 +249,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3da3d26f48d06748be9324055f4e28a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nickname: 
+  nicknameObject: {fileID: 6018160165400467936, guid: e589d1467522a2747bcddf9b1dbab55c,
+    type: 3}
   movementSpeed: 10
   target: {fileID: 0}
   layerMask:

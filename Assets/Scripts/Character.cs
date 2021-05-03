@@ -4,11 +4,15 @@ using UnityEngine;
 
 public class Character : MonoBehaviour
 {
+    [SerializeField]
+    protected string nickname;
+    [SerializeField]
+    NicknameFollow nicknameObject;
     Rigidbody characterRigidbody;
     protected Transform characterTransform;
     Weapon characterWeapon;
     WeaponHandler weaponHandler;
-
+    
     float movementX;
     float movementZ;
     Vector2 movementVector;
@@ -17,9 +21,16 @@ public class Character : MonoBehaviour
     float movementSpeed;
     protected virtual void Awake()
     {
+        nickname = PlayerPrefs.GetString("nickname");
         weaponHandler = GetComponent<WeaponHandler>();
         characterRigidbody = GetComponent<Rigidbody>();
         characterTransform = GetComponent<Transform>();
+    }
+    void Start()
+    {
+        NicknameFollow nickname = Instantiate(nicknameObject);
+        nickname.SetTarget(this);
+        nicknameObject = nickname;
     }
     private void Update()
     {
@@ -71,6 +82,21 @@ public class Character : MonoBehaviour
     public Character GetCharacter()
     {
         return this;
+    }
+    public string GetNickname()
+    {
+        return nickname;
+    }
+    public void ChangeNicknameState()
+    {
+        if (nicknameObject.isActiveAndEnabled)
+        {
+            nicknameObject.gameObject.SetActive(false);
+        }
+        else
+        {
+            nicknameObject.gameObject.SetActive(true);
+        }
     }
     #endregion
     

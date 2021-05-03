@@ -11,6 +11,10 @@ public class Dummy : Character
     LayerMask layerMask;
     [SerializeField]
     TargetFinder targetFinder;
+    void Start()
+    {
+        nickname = "dummy";
+    }
     private void OnEnable()
     {
         target = null;

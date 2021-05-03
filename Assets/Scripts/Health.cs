@@ -54,6 +54,7 @@ public class Health : MonoBehaviour
     private void Respawn()
     {
         transform.position = respawnPosition;
+        character.ChangeNicknameState();
         Setup();
     }
     private void Die()
@@ -72,6 +73,7 @@ public class Health : MonoBehaviour
         cameraFollow.CheckPlayer(character);
         meshRenderer.enabled = false;
         attachedCollider.enabled = false;
+        character.ChangeNicknameState();
     }
     IEnumerator WaitForRespawn()
     {
